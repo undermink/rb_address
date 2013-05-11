@@ -1,0 +1,50 @@
+body{
+  backgound-color : #000;
+}
+
+#sitewrapper{
+  margin : auto;
+  width : 800px;
+}
+
+#wrapper{
+  float : left;
+  margin : auto;
+  border : 2px solid white;
+  border-radius:25px;
+  margin-bottom : 50px;
+  box-shadow : 5px 5px 5px black;
+  background-color : #000;
+  background-image : moz-linear-gradient(100% 100% 90deg top, #ff0000, #86afd5);
+  padding : 20px;
+}
+
+#header{
+  background : #000;
+  margin-bottom : 50px;
+  border : 2px solid #555;
+  box-shadow : 5px 5px 5px black;
+  border-radius : 25px;
+  width : 800px;
+  height : 100px;
+  overflow : hidden;
+}
+
+#header h1 {
+  text-align : center;
+  color : white;
+}
+
+#main{
+  background : #000;
+  color : fff;
+  width : 350px;
+  margin : auto;
+  position : relative;
+  left : 0px;
+  border : solid 2px white;
+  text-align : right;
+  padding : 15px;
+  border-radius : 25px;
+  box-shadow : 5px 5px 5px black;
+}
