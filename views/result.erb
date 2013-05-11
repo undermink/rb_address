@@ -1,0 +1,46 @@
+<div id="sitewrapper" style="margin:auto;width:800px;">
+<div id="wrapper" style="float:left;margin:auto;border:2px solid black;border-radius:25px;margin-bottom:50px;box-shadow:5px 5px 5px black;background-color:#86afd5;background-image:moz-linear-gradient(100% 100% 90deg top, #ff0000, #86afd5);padding:20px;">
+<div id="header" style="background:#fff;margin-bottom:50px;border:2px solid #000;box-shadow:5px 5px 5px black;border-radius:25px;width:800px;height:100px;overflow:hidden;">
+<h1 style="text-align:center;">Suche</h1>
+<img width="100px" height="100px" src="schaf.svg" style="position:relative;float:right;top:-90;right:20;"></h1>
+</div>
+<%  nach = "<ul>"
+	
+params.each do |suche|
+  suche.to_s.gsub(/\["([^"]+)", "([^"]+)"\]/)
+  if suche[1] != ''
+    nach += "<li><b>#{suche[0]}</b> : #{suche[1]}</li>"
+  end
+end
+nach +='</ul>'
+print nach
+nach.gsub!(/<li><b><\/b> : <\/li>/,"")
+if nach=="<ul></ul>" 
+  nach ="<ul>alle anzeigen</ul>"
+end
+      %>
+      <div id="suchenach" style="margin:auto;margin-bottom:25px;background:rgba(200,200,200,0.7);width:450px;postition:relative;left:0px;border:dashed 2px black;text-align:left;padding:25px;border-radius:15px;box-shadow:0px 0px 5px 5px rgba(100,100,100,0.7);">
+	<a>Suche nach :<%=nach%></a>
+	<img src="lupe.png" style="width: 100px; height: 100px; position: relative; float: right; top: -90px; right: 0px;">
+      </div>
+      <% @address.each do |address| %>
+	<%@name=address.send('name') %>
+	<%@vorname=address.send('vorname')%>
+	<div class="eintrag" style="margin:auto;margin-bottom:25px;background:#fff;width:350px;postition:relative;left:0px;border:solid 2px black;text-align:left;padding:25px;border-radius:25px;box-shadow:5px 5px 5px black;">
+	  <h2 style="text-align:center;"><%="#{@name.capitalize} - #{@vorname.capitalize}"%></h2>
+	  <ul>
+	    <% address.class.properties.each do |p| %>
+
+	      <li><b><%=p.name.to_s.capitalize%></b>: 
+	      <%=address.send(p.name).to_s.capitalize%></li> 
+	    <% end %>
+	  </ul>
+	  <form method="post" action="/delete?id=<%=address.send('id')%>" style="text-align:center">
+	    <input type="submit" value="eintrag löschen" />
+	  </form>
+	</div>
+
+      <% end %>
+      <p align="center"><br><a href="#" onclick="history.go(-1)">Zurück</a></p>
+    </div>
+  </div>
